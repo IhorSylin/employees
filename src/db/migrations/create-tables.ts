@@ -3,13 +3,13 @@ import { Knex } from "knex";
 export async function up(knex: Knex) {
   await knex.schema.createTable("tribes", (table) => {
     table.increments("id").primary();
-    table.text("name").notNullable();
+    table.text("tribe_name").notNullable();
     table.text("department").notNullable();
   });
   
   await knex.schema.createTable("employees", (table) => {
     table.increments("id").primary();
-    table.text('name').notNullable();
+    table.text('employee_name').notNullable();
     table.text("title").notNullable();
     table
       .integer("tribe_id")

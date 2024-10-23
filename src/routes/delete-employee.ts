@@ -5,15 +5,16 @@ import {
   RouteOptions,
 } from "fastify";
 
-import * as postsModel from "../models/posts";
+import * as employeesModel from "../models/employees";
+import { IdType } from "./schemas";
 
 export default function getIndex(fastify: FastifyInstance): RouteOptions {
   return {
     method: "DELETE",
-    url: "/posts/:id",
+    url: "/api/employees/:id",
     handler: async function (request: FastifyRequest, reply: FastifyReply) {
-      const { id } = request.params as { id: number };
-      await postsModel.deletePost(fastify, id);
+      const { id } = request.params as IdType;
+      await employeesModel.deletePost(fastify, id);
       reply.code(200).send("Deleted!");
     },
   };
