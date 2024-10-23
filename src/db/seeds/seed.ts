@@ -1,24 +1,23 @@
 import { Knex } from "knex";
 export async function seed(knex: Knex) {
-  const usersSeedData = [
-    { username: "Mykhailo", bio: "-" },
-    { username: "Rain", bio: "Chief Random Obsession Officer" },
+  const employeesSeedData = [
+    { name: "Mykhailo", title: "The strongest in the history", tribe_id: 2},
+    { name: "Ihor", title: "Just me", tribe_id: 1},
+    { name: "Max", title: "Intern", tribe_id: 2},
   ];
 
-  const postsSeedData = [
+  const tribesSeedData = [
     {
-      text: "Batman vs Superman is 10/10 movie",
-      hashtags: "opinion, movies",
-      user_id: 1,
+      name: "Internstellar",
+      department: "FreshMeetPreparation",
     },
     {
-      text: "Tallinn is the Estonian New-York",
-      hashtags: "cities",
-      user_id: 1,
+      name: "Dark Magic",
+      department: "Development",
     },
-    { text: "Lenovo > Apple", hashtags: "opinion", user_id: 2 },
   ];
+  
+  await knex("tribes").insert(tribesSeedData);
+  await knex("employees").insert(employeesSeedData);
 
-  await knex("users").insert(usersSeedData);
-  await knex("posts").insert(postsSeedData);
 }
