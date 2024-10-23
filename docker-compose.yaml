@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    container_name: posts-app
+    container_name: employees-app
     ports:
       - 3002:3000
     environment:
@@ -15,7 +15,7 @@ services:
       - mysql
   mysql:
     image: mysql:latest
-    container_name: posts-db
+    container_name: employees-db
     ports:
       - 3306:3306
     environment:
