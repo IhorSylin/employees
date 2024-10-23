@@ -1,5 +1,5 @@
 export interface Tribe {
   id: number;
-  tribe_name: string;
+  name: string;
   department: string;
 }

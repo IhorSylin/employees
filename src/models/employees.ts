@@ -12,7 +12,7 @@ export interface Employee {
 }
 export interface EmployeeDTO {
   id: number;
-  employee_name: string;
+  name: string;
   title: string;
   tribe: Tribe;
 }
@@ -29,11 +29,11 @@ interface EmployeeQueryResult {
 const formatEmployeeDTO = (queryResult: EmployeeQueryResult): EmployeeDTO => {
   return {
     id: queryResult.id,
-    employee_name: queryResult.employee_name,
+    name: queryResult.employee_name,
     title: queryResult.title,
     tribe: {
       id: queryResult.tribe_id,
-      tribe_name: queryResult.tribe_name,
+      name: queryResult.tribe_name,
       department: queryResult.department,
     },
   };
@@ -66,13 +66,13 @@ export async function getEmployees(
       'employees.employee_name' as 'name',
       'employees.title' as 'title',
       'employees.tribe_id' as 'tribe_id',
-      'tribes.tribe_name' as 'tribe_name',
+      'tribes.tribe_name' as 'tribe',
       'tribes.department' as 'department',
     );
 
-  if (query.employee_name) queryResult.whereLike("employees.employee_name", `%${query.employee_name}%`);
+  if (query.name) queryResult.whereLike("employees.employee_name", `%${query.name}%`);
   if (query.title) queryResult.whereLike("employees.title", `%${query.title}%`);
-  if (query.tribe_name) queryResult.whereLike("tribes.tribe_name", `%${query.tribe_name}%`);
+  if (query.tribe) queryResult.whereLike("tribes.tribe_name", `%${query.tribe}%`);
 
   return (await queryResult.then()).map(formatEmployeeDTO);
 }
