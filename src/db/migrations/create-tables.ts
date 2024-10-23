@@ -1,22 +1,21 @@
 import { Knex } from "knex";
 
 export async function up(knex: Knex) {
-  await knex.schema.createTable("users", (table) => {
+  await knex.schema.createTable("employees", (table) => {
     table.increments("id").primary();
-    table.text("username").notNullable();
-    table.text("bio").nullable().defaultTo(null);
-  });
-
-  await knex.schema.createTable("posts", (table) => {
-    table.increments("id").primary();
-    table.text("text").notNullable();
-    table.text("hashtags").nullable().defaultTo(null);
+    table.text('name').notNullable();
+    table.text("title").nullable().defaultTo(null);
     table
-      .integer("user_id")
+      .integer("tribe_id")
       .index()
       .unsigned()
-      .references("id")
-      .inTable("users");
+      .references("id").inTable("tribes");
+  });
+
+  await knex.schema.createTable("tribes", (table) => {
+    table.increments("id").primary();
+    table.text("name").notNullable();
+    table.text("department").notNullable();
   });
 }
 export async function down(knex: Knex) {
