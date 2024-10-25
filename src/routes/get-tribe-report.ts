@@ -5,20 +5,16 @@ import {
   RouteOptions,
 } from "fastify";
 
-import * as employeesModel from "../models/employees";
+import * as tribesModel from "../models/tribes";
 import { searchQuerySchema, searchQueryType } from "./schemas";
 
 export default function getIndex(fastify: FastifyInstance): RouteOptions {
   return {
     method: "GET",
-    url: "/api/employees",
-    schema: {
-      querystring: searchQuerySchema,
-    },
+    url: "/api/report",
     handler: async function (request: FastifyRequest, reply: FastifyReply) {
-      const query = request.query as searchQueryType;
-      const employees = await employeesModel.getEmployees(fastify, query);
-      reply.send(employees);
+      const tribeReport = await tribesModel.getTribeReport(fastify);
+      reply.send(tribeReport);
     },
   };
 }

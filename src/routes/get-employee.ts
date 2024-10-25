@@ -20,9 +20,8 @@ export default function getIndex(fastify: FastifyInstance): RouteOptions {
       const { id } = request.params as IdType;
       const employee = await employeesModel.getEmployee(fastify, id);
 
-      if(employee == null){
-        reply.statusCode = 404
-        reply.send("No employee found")
+      if(!employee){
+        reply.code(404).send("No employee found")
       } else {
         reply.send(employee);
       }

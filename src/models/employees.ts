@@ -1,8 +1,9 @@
 import { FastifyInstance } from "fastify";
 import { searchQueryType } from "../routes/schemas";
-import { Tribe } from "./tribes";
+import { Tribe, TRIBE_REPORT_CACHE_KEY } from "./tribes";
 
 const TABLE_NAME = "employees";
+const GET_EMPLOYEES_CACHE_KEY = "employeesList";
 
 export interface Employee {
   id: number;
@@ -39,14 +40,16 @@ const formatEmployeeDTO = (queryResult: EmployeeQueryResult): EmployeeDTO => {
   };
 };
 
-export async function createEmployee(
+export async function createEmployee( //Ask about cache here
   fastify: FastifyInstance,
   employee: {
     employee_name: string,
     title: string,
     tribe_id: number 
   },
-): Promise<Employee> {
+): Promise<Employee> { 
+  await fastify.cache.del(GET_EMPLOYEES_CACHE_KEY);
+  await fastify.cache.del(TRIBE_REPORT_CACHE_KEY);
   return await fastify.tars.from(TABLE_NAME).insert({
     employee_name: employee.employee_name,
     title: employee.title,
@@ -58,6 +61,11 @@ export async function getEmployees(
   fastify: FastifyInstance,
   query: searchQueryType
 ): Promise<any> {
+  const cache = await fastify.cache.get(GET_EMPLOYEES_CACHE_KEY);
+  if (cache) {
+    return JSON.parse(cache).map(formatEmployeeDTO);
+  }
+
   const queryResult = fastify.tars
     .from(TABLE_NAME)
     .innerJoin("tribes", "tribes.id", "employees.tribe_id")
@@ -73,6 +81,10 @@ export async function getEmployees(
   if (query.employee_name) queryResult.whereLike("employees.employee_name", `%${query.employee_name}%`);
   if (query.title) queryResult.whereLike("employees.title", `%${query.title}%`);
   if (query.tribe_name) queryResult.whereLike("tribes.tribe_name", `%${query.tribe_name}%`);
+
+  const results = await queryResult.then();
+
+  await fastify.cache.set(GET_EMPLOYEES_CACHE_KEY, JSON.stringify(results), { EX: 60 });
 
   return (await queryResult.then()).map(formatEmployeeDTO);
 }
@@ -94,6 +106,7 @@ export async function getEmployee(
     'tribes.department' as 'department',
   );
   if (employee.length == 0) return null;
+  
   return formatEmployeeDTO(employee[0]);
 }
 
@@ -101,5 +114,7 @@ export async function deletePost(
   fastify: FastifyInstance,
   id: number
 ): Promise<void> {
+  await fastify.cache.del(TRIBE_REPORT_CACHE_KEY);
+  await fastify.cache.del(GET_EMPLOYEES_CACHE_KEY);
   await fastify.tars.from(TABLE_NAME).where({ id }).del();
 }
