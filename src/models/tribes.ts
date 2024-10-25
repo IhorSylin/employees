@@ -5,9 +5,9 @@ const TABLE_NAME = "tribes";
 export const TRIBE_REPORT_CACHE_KEY = "report";
 
 export interface Tribe {
-  id: number;
-  tribe_name: string;
   department: string;
+  id: number;
+  name: string;
 }
 
 export interface ReportDTO {
