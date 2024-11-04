@@ -13,7 +13,7 @@ async function createDatabase() {
   config.connection.database = undefined;
 
   const knexInstance = knex(config);
-  await knexInstance.raw("CREATE DATABASE posts");
+  await knexInstance.raw("CREATE DATABASE employees");
   console.log("✅ Database created");
   process.exit();
 }

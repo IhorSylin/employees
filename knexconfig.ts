@@ -33,4 +33,9 @@ export default {
       charset: "utf8",
     },
   },
+  test: {
+    client: "sqlite3",
+    connection: { filename: ":memory:" },
+    useNullAsDefault: true,
+  },
 };
