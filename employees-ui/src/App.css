@@ -42,11 +42,14 @@
 } */
 
 .sideBar{
-  background-color: darkolivegreen;
+  background-color: #4ccfca;
   height: 100vh;
   width: 20vw;
+  max-width: 380px;
   display: flex;
- justify-content: center;
+  align-items: center;
+  flex-direction:column;
+  flex-wrap: wrap;
 }
 
 .sideBarLinkButtonsContainer{
@@ -57,5 +60,34 @@
 }
 
 .pageContainer{
+  width: 100vw;
   display: flex;
+} 
+
+.smallName{
+  margin: 0;
+  font-size: 70px;
+  color: #72ede8;
+}
+
+.homeMainName{
+  margin: 0;
+  font-size: 120px;
+}
+
+.homeContainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color:beige;
+}
+.pageContainer{
+  width: 100vw;
+  height: 100%;
+}
+.outletContainer{
+  padding-top: 60px;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  width: 100%;
 }
