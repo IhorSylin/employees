@@ -7,9 +7,9 @@ export const PostBodySchema = Type.Object({
 });
 
 export const searchQuerySchema = Type.Object({
-  name: Type.Optional(Type.String()),
+  employee_name: Type.Optional(Type.String()),
   title: Type.Optional(Type.String()),
-  tribe: Type.Optional(Type.String()),
+  tribe_name: Type.Optional(Type.String()),
 });
 
 export const IdSchema = Type.Object({
