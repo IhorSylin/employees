@@ -16,7 +16,7 @@ export async function employeesPromise() {
     );
   
     const data = await response.json()
-    console.log(`${data}`)
+    console.log(`AAAAAAAA${data}`)
     return data
 }
   

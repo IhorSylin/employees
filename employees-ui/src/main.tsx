@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Home } from './components/Home.js';
 import { Employees, employeesLoader } from './components/Employees.js';
 import { Tribes } from './components/Tribes.js';
-import { Report } from './components/Report.js';
+import { Report, reportLoader } from './components/Report.js';
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +28,7 @@ export const router = createBrowserRouter([
     {
       path: 'report',
       element: <Report />,
+      loader: reportLoader,
     },
     ],
     errorElement: <p>Something wrong happened!</p>
