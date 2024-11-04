@@ -1,2 +1,28 @@
-node_modules/
-coverage/
+employees-ui/node_modules/
+employees-api/node_modules/
+employees-api/coverage/
+
+# Logs
+employees-ui/logs
+employees-ui/*.log
+employees-ui/npm-debug.log*
+employees-ui/yarn-debug.log*
+employees-ui/yarn-error.log*
+employees-ui/pnpm-debug.log*
+employees-ui/lerna-debug.log*
+
+employees-ui/node_modules
+employees-ui/dist
+employees-ui/dist-ssr
+employees-ui/*.local
+
+# Editor directories and files
+employees-ui/.vscode/*
+employees-ui/!.vscode/extensions.json
+employees-ui/.idea
+employees-ui/.DS_Store
+employees-ui/*.suo
+employees-ui/*.ntvs*
+employees-ui/*.njsproj
+employees-ui/*.sln
+employees-ui/*.sw?
