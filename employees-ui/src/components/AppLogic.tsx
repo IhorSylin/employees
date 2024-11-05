@@ -4,13 +4,14 @@ export function AppLogic() {
     return (
         <div className="pageContainer">
             <div className="sideBar">
-                <h2 className="smallName">AMADEUS</h2>
+                <Link to={''} className="smallName">AMADEUS</Link>
+                <div className="sideBarLine"></div>
                 <div className="sideBarLinkButtonsContainer">
-                    <Link to={''} className="sideBarLinkButton">Home</Link>
                     <Link to={'employees'} className="sideBarLinkButton">Employees</Link>
                     <Link to={'tribes'} className="sideBarLinkButton">Tribes</Link>
                     <Link to={'report'} className="sideBarLinkButton">Report</Link>
                 </div>
+                <div className="sideBarLine" ></div>
             </div>
             <div className="outletContainer">
                 <Outlet />

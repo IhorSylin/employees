@@ -1,0 +1,93 @@
+.employeesContainer{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    background-color: var(--interactable-primary) ;
+    padding: 1.5vw;
+    padding-right: 2vw;
+    border-radius: 6px;
+    color: var(--bac);
+}
+
+.employeesListContainer{
+    
+}
+
+.employeesSearchFieldButtonsContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap:0.6%;
+}
+
+.employeesTextInput{
+    background-color: #f5f5f5;
+    color: #242424;
+    padding: .15rem .5rem;
+    min-height: 40px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    line-height: 1.15;
+    box-shadow: 0px 10px 20px -18px;
+    width: 100%;
+}
+
+.employeesSearchButton{
+    width: 36%;
+    max-width: 100px;
+    height: 45.5px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 10px 20px -18px;
+}
+
+.employeesAddButton{
+    width: 20%;
+    max-width: 45.5px;
+    height: 45.5px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 10px 20px -18px;
+}
+
+.employeesListColumnsContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap:0.6%;
+    list-style-type: none;
+}
+
+.employeesListColumnsContainer{
+    background-color: white;
+}
+
+.employeesListColumnsContainer p{
+    font-size: 1.5vw;
+}
+
+.employeesListColumnsContainer div{
+    background-color: var(--non-interactable-secondary);
+    height: 50px;
+    border-radius: 3px;
+    width: 5px;
+}
+
+.addEmployeeOverlay{
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}

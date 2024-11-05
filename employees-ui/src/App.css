@@ -41,15 +41,30 @@
   color: #888;
 } */
 
+:root {
+  --non-interactable-secondary: #3fb2e3;
+  --interactable-primary:#91dbfa;
+  --background-color:#258db9;
+  --outlet-primary: #58cdff;
+  --outlet-secondary: #3db7eb;
+}
+
 .sideBar{
-  background-color: #4ccfca;
+  background-color: var(--background-color);
   height: 100vh;
-  width: 20vw;
-  max-width: 380px;
+  width: 40vw;
+  max-width: 360px;
   display: flex;
   align-items: center;
   flex-direction:column;
   flex-wrap: wrap;
+}
+
+.sideBarLine{
+  background-color: var(--non-interactable-secondary);
+  height: 5px;
+  border-radius: 3px;
+  width: 86%;
 }
 
 .sideBarLinkButtonsContainer{
@@ -57,6 +72,22 @@
   justify-content: center;
   flex-direction:column;
   flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.sideBarLinkButton{
+  width: 12vw;
+  height: 32px;
+  /* border: 5px solid var(--non-interactable-secondary); */
+  border-radius: 20px;
+  text-align: center;
+  align-content: center;
+  background-color: var(--interactable-primary);
+  color: var(--background-color);
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.09), 0 2px 7px rgba(0,0,0,0.03);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.058);
 }
 
 .pageContainer{
@@ -66,28 +97,53 @@
 
 .smallName{
   margin: 0;
-  font-size: 70px;
-  color: #72ede8;
+  font-size: 4.6vw;
+  color:  var(--outlet-primary);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.18);
 }
 
 .homeMainName{
   margin: 0;
-  font-size: 120px;
+  font-size: 10vw;
+  color:  var(--outlet-primary);
+
+}
+
+.homeSubtitle{
+  margin: 0;
+  font-size: 5vw;
+  color: var(--outlet-secondary);
 }
 
 .homeContainer{
   width: 100%;
+  padding-top: 12vw;
   display: flex;
-  justify-content: center;
-  background-color:beige;
+  align-items: center;
+  flex-direction:column;
+  flex-wrap: wrap;
 }
 .pageContainer{
   width: 100vw;
   height: 100%;
 }
 .outletContainer{
-  padding-top: 60px;
+  padding-top: 2.5vw;
   padding-left: 4vw;
   padding-right: 4vw;
+  padding-bottom: 6vw;
   width: 100%;
+}
+
+@media screen and (min-width: 1300px) {
+  .smallName {
+     font-size: 60px;
+  }
+  .homeMainName{
+    font-size: 130px;
+  }
+  .homeSubtitle{
+    font-size: 65px;
+  }
+
 }

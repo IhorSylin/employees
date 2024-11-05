@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import "./Employees.css"
 import { Suspense } from "react";
 import {
   Await,
@@ -30,6 +31,23 @@ export function Report() {
   
     console.log(" Data", data);
     return (
+      <div className="employeesContainer">
+      <div className='employeesSearchFieldButtonsContainer'>
+        <input type='text' className='employeesTextInput'></input>
+        <button type='submit' className='employeesSearchButton'>Search</button>
+      </div>
+      <div className='employeesListContainer'>
+        <div className='employeesListColumnsContainer'>
+          <p>ID</p>
+          <div></div>
+          <p>Name</p>
+          <div></div>
+          <p>Title</p>
+          <div></div>
+          <p>Tribe</p>
+          <div></div>
+          <p>Department</p>
+        </div>
       <Suspense fallback={<p>Still loading...</p>}>
         <Await
           resolve={data.reportPromise}
@@ -70,5 +88,7 @@ export function Report() {
           )}
         </Await>
       </Suspense>
+      </div>
+      </div>
     );
   }
