@@ -5,6 +5,7 @@ import {
   Await,
   Link,
   LoaderFunctionArgs,
+  NavLink,
   defer,
   useLoaderData,
 } from "react-router-dom";
@@ -44,8 +45,7 @@ export async function employeesPromise() {
     return data
 }
   
-export async function employeesLoader({ request }) {
-    console.log("Loader Request", request);
+export async function employeesLoader() {
     return defer({ employeesPromise: employeesPromise() });
 }
 

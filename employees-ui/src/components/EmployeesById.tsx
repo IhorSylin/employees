@@ -9,8 +9,8 @@ export async function employeesByIdPromise(id:string) {
       `api/employees/${id}`
     );
   
-    const data = await response.json()
-    return data;
+    const employeeData = await response.json()
+    return employeeData;
 }
 
 export async function employeesByIdLoader({ params }:LoaderFunctionArgs) {
@@ -20,14 +20,14 @@ export async function employeesByIdLoader({ params }:LoaderFunctionArgs) {
 }
 
 export function EmployeesById() {
-    const data = useLoaderData() as { employeesByIdPromise: any };
+    const employeeData = useLoaderData() as { employeesByIdPromise: any };
   
-    console.log("Employees Data", data);
+    console.log("Employees Data", employeeData);
     return (
     <div className="employeesContainer">
       <Suspense fallback={<p>Still loading...</p>}>
         <Await
-          resolve={data.employeesByIdPromise}
+          resolve={employeeData.employeesByIdPromise}
           errorElement={<p>Something bad happened while fetching data</p>}
         >
           {(employee: any) => (
