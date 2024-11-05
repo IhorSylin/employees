@@ -1,12 +1,35 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import './Employees.css';
-import { Suspense } from "react";
+import { SetStateAction, Suspense, useState } from "react";
 import {
   Await,
+  Link,
   LoaderFunctionArgs,
   defer,
   useLoaderData,
 } from "react-router-dom";
+import cat from '../assets/catttt.gif'
+
+const addEmployee = (name:string, addedTitle:string, tribeId:number) => {
+  const employee_name = name.trim()
+  const title = addedTitle.trim()
+  const tribe_id  = tribeId;
+  if (employee_name && title && tribe_id) {
+    console.log()
+    fetch("api/employees", {
+      method: "POST",
+      body: JSON.stringify({
+        employee_name,
+        title,
+        tribe_id,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+  }
+}
+
 
 
 export async function employeesPromise() {
@@ -27,7 +50,7 @@ export async function employeesLoader({ request }) {
 }
 
 function on() {
-  const overlay = document.getElementsByClassName("addEmployeeOverlay")[0];
+  const overlay = document.getElementsByClassName("addOverlay")[0];
 
   if (overlay instanceof HTMLElement) {
     overlay.style.display = "block";
@@ -35,31 +58,53 @@ function on() {
 }
 
 function off() {
-  const overlay = document.getElementsByClassName("addEmployeeOverlay")[0];
+  const overlay = document.getElementsByClassName("addOverlay")[0];
 
   if (overlay instanceof HTMLElement) {
-    overlay.style.display = "block";
+    overlay.style.display = "none";
 }
 }
 export function Employees() {
-    const data = useLoaderData() as { employeesPromise: any };
+    const data = useLoaderData() as { employeesPromise: any }; 
+    const [name, setName] = useState<string>('');
+    const [title, setTitle] = useState<string>('');
+    const [tribeId, setTribeId] = useState<number>(1);
     
-    
+  const handleNameChange= (event: { target: { value: SetStateAction<string>; }; }) => {
+    setName(event.target.value);
+  };
+
+  const handleTitleChange= (event: { target: { value: SetStateAction<string>; }; }) => {
+    setTitle(event.target.value);
+  };
+
+  const handleTribeIdChange= (event: React.ChangeEvent<HTMLInputElement> ) => {
+    setTribeId((event.target.value as unknown as number));
+  };
+
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
+    // event.preventDefault();
+    addEmployee(name, title, tribeId);
+    setName('');
+    setTitle('');
+    setTribeId(1);
+    off();
+};
 
     console.log("Employees Data", data);
     return (
       <>
-        <div className='addEmployeeOverlay'>
+        <div className='addOverlay'>
           <div className='overlayFormContainer'>
-            <form>
+            <form onSubmit={handleSubmit}>
               <p>Name</p>
-              <input type='text'></input>
+              <input type='text' onChange={handleNameChange} value={name}></input>
               <p>Title</p>
-              <input type='text'></input>
+              <input type='text' onChange={handleTitleChange} value={title}></input>
               <p>Tribe ID</p>
-              <input type='number'></input>
+              <input type='number' onChange={handleTribeIdChange} value={tribeId}></input>
               <button type='submit'>Add Employee</button>
-              <button onClick={off()}>Close overlay</button>
+              <button onClick={() => off()}>Close overlay</button>
             </form>
           </div>
         </div>
@@ -67,7 +112,7 @@ export function Employees() {
           <div className='employeesSearchFieldButtonsContainer'>
             <input type='text' className='employeesTextInput'></input>
             <button type='submit' className='employeesSearchButton'>Search</button>
-            <button className='employeesAddButton' onClick={on()} type='submit'>+</button>
+            <button className='employeesAddButton' onClick={() => on()} type='submit'>+</button>
           </div>
           <div className='employeesListContainer'>
             <div className='employeesListColumnsContainer'>
@@ -90,23 +135,25 @@ export function Employees() {
                   <>
                     
                       {employees.map((employee: any) => (
-                        <ul className='employeesListColumnsContainer'>
-                          <li key={employee.id}>
+                        <Link to={`${employee.id}`}>
+                        <ul className='employeesListColumnsContainer' key={employee.id}>
+                          <li>
                             {employee.id}
                           </li>
-                          <li key={employee.id}>
+                          <li>
                             {employee.name}
                           </li>
-                          <li key={employee.id}>
+                          <li>
                             {employee.title}
                           </li>
-                          <li key={employee.id}>
+                          <li>
                             {employee.tribe.name}
                           </li>
-                          <li key={employee.id}>
+                          <li >
                             {employee.tribe.department}
                           </li>
                         </ul>
+                        </Link>
                       ))}
                   </>
                 )}

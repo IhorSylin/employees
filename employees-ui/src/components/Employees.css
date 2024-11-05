@@ -78,7 +78,7 @@
     width: 5px;
 }
 
-.addEmployeeOverlay{
+.addOverlay{
     position: fixed;
     display: none;
     width: 100%;
@@ -90,4 +90,11 @@
     background-color: rgba(0,0,0,0.5);
     z-index: 2;
     cursor: pointer;
+}
+
+.overlayFormContainer{
+    display: flex;
+    justify-self: center;
+    padding-top: 32vh;
+    align-items: center;
 }

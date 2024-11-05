@@ -7,6 +7,7 @@ import { Home } from './components/Home.js';
 import { Employees, employeesLoader } from './components/Employees.js';
 import { Tribes, tribesLoader } from './components/Tribes.js';
 import { Report, reportLoader } from './components/Report.js';
+import { EmployeesById, employeesByIdLoader } from './components/EmployeesById.js';
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,11 @@ export const router = createBrowserRouter([
       loader: employeesLoader,
     },
     {
+      path: 'employees/:id',
+      element: <EmployeesById />,
+      loader: employeesByIdLoader,
+    },
+    {
       path: 'tribes',
       element: <Tribes />,
       loader: tribesLoader,
@@ -31,6 +37,7 @@ export const router = createBrowserRouter([
       element: <Report />,
       loader: reportLoader,
     },
+    
     ],
     errorElement: <p>Something wrong happened!</p>
   },

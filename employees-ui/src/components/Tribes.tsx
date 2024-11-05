@@ -53,14 +53,14 @@ export function Tribes() {
             <>
               
                 {tribes.map((tribe: any) => (
-                <ul className='employeesListColumnsContainer'>
-                    <li key={tribe.id}>
+                <ul className='employeesListColumnsContainer' key={tribe.id}>
+                    <li >
                         {tribe.id}
                     </li>
-                    <li key={tribe.id}>
+                    <li >
                         {tribe.tribe_name}
                     </li>
-                    <li key={tribe.id}>
+                    <li >
                         {tribe.department}
                     </li>
                 </ul>
