@@ -3,7 +3,6 @@ import "./Employees.css"
 import { Suspense } from "react";
 import {
   Await,
-  LoaderFunctionArgs,
   defer,
   useLoaderData,
 } from "react-router-dom";
@@ -21,8 +20,7 @@ export async function reportPromise() {
     return data
 }
   
-export async function reportLoader({ request }) {
-    console.log("Loader Request", request);
+export async function reportLoader() {
     return defer({ reportPromise: reportPromise() });
 }
 

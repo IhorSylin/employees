@@ -4,12 +4,9 @@ import { SetStateAction, Suspense, useState } from "react";
 import {
   Await,
   Link,
-  LoaderFunctionArgs,
-  NavLink,
   defer,
   useLoaderData,
 } from "react-router-dom";
-import cat from '../assets/catttt.gif'
 
 const addEmployee = (name:string, addedTitle:string, tribeId:number) => {
   const employee_name = name.trim()
@@ -83,7 +80,7 @@ export function Employees() {
   };
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
-    // event.preventDefault();
+    event.preventDefault();
     addEmployee(name, title, tribeId);
     setName('');
     setTitle('');
