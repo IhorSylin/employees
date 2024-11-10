@@ -47,11 +47,18 @@
   --background-color:#258db9;
   --outlet-primary: #58cdff;
   --outlet-secondary: #3db7eb;
+  height: 100%;
 }
+
+.pageContainer{
+  height: 100%;
+  width: 100vw;
+  display: flex;
+} 
 
 .sideBar{
   background-color: var(--background-color);
-  height: 100vh;
+  height: 2000px;
   width: 40vw;
   max-width: 360px;
   display: flex;
@@ -90,10 +97,7 @@
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.058);
 }
 
-.pageContainer{
-  width: 100vw;
-  display: flex;
-} 
+
 
 .smallName{
   margin: 0;

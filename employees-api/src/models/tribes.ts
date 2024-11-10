@@ -100,3 +100,20 @@ export async function getTribes(
 
   return (await queryResult.then());
 }
+
+export async function getTribe(
+  fastify: FastifyInstance,
+  id: number
+): Promise<Tribe | null> {
+  const tribe = await fastify.tars
+  .from(TABLE_NAME)
+  .where({ "tribes.id": id })
+  .select(
+    'id' as 'id',
+    'tribe_name' as 'name',
+    'department' as 'department',
+  );
+  if (tribe.length == 0) return null;
+  
+  return tribe[0];
+}

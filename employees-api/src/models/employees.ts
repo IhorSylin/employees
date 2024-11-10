@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { searchQueryType } from "../routes/schemas";
+import { PostBodyType, searchQueryType } from "../routes/schemas";
 import { Tribe, TRIBE_REPORT_CACHE_KEY } from "./tribes";
 
 const TABLE_NAME = "employees";
@@ -55,6 +55,23 @@ export async function createEmployee( //Ask about cache here
     title: employee.title,
     tribe_id: employee.tribe_id
   });
+}
+
+export async function updateEmployee(
+  fastify: FastifyInstance,
+  employee: PostBodyType,
+  id: number
+): Promise<Employee> { 
+  await fastify.cache.del(GET_EMPLOYEES_CACHE_KEY);
+  await fastify.cache.del(TRIBE_REPORT_CACHE_KEY);
+  return await fastify.tars
+    .from(TABLE_NAME)
+    .where({ "id": id })
+    .update({
+      "employee_name": employee.employee_name,
+      "title": employee.title,
+      "tribe_id": employee.tribe_id
+    })
 }
 
 export async function getEmployees(

@@ -1,17 +1,35 @@
 .employeesContainer{
-    height: 100%;
+    height: 1020px;
     display: flex;
     flex-direction: column;
-    gap: 2vw;
+    gap: 1.5vw;
     background-color: var(--interactable-primary) ;
     padding: 1.5vw;
-    padding-right: 2vw;
     border-radius: 6px;
     color: var(--bac);
 }
 
 .employeesListContainer{
-    
+    background-color: var(--non-interactable-secondary);
+    border-radius: 4px;
+}
+
+.employeesScrolableListPart{
+    padding: 1.5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    overflow-y: scroll;
+    max-height: 68vh;
+}
+
+.employeesListRowInfo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style-type: none;
+    padding-left: 0.4vw;
+    padding-right: 1.6vw;
 }
 
 .employeesSearchFieldButtonsContainer{
@@ -35,6 +53,7 @@
 }
 
 .employeesSearchButton{
+    font-size: 20px;
     width: 36%;
     max-width: 100px;
     height: 45.5px;
@@ -55,20 +74,78 @@
 }
 
 .employeesListColumnsContainer{
-    width: 100%;
+    padding-left: 2.2vw;
+    padding-right: 8.5vw;
+    border-radius: 4px;
+    box-shadow: 0px 10px 20px -18px;
+    background-color: #f5f5f5;
+    color: #242424;
     display: flex;
+    position: sticky;
+    justify-content: center;
     align-items: center;
     flex-direction: row;
     gap:0.6%;
     list-style-type: none;
+    flex-grow: 1;
 }
 
-.employeesListColumnsContainer{
-    background-color: white;
+.employeesListRowInfo li{
+    flex:1;
+    justify-content: center;
+    align-items: center;
 }
 
+.overlayFormInput{
+    background-color: #f5f5f5;
+    color: #242424;
+    padding: 5px 10px;
+    min-height: 20px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    line-height: 1.15;
+    box-shadow: 0px 14px 22px -18px;
+    width: 160px;  
+}
+
+.overlayFormAddEmployeeButton{
+    font-size: 20px;
+    width: 100%;
+    height: 45.5px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 10px 20px -18px;
+}
+
+
+.employeesListRowsContainer{
+    padding: 6px;
+    border-radius: 4px;
+    box-shadow: 0px 10px 20px -18px;
+    background-color: #f5f5f5;
+    color: #242424;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap:0.6%;
+    flex-grow: 1;
+}
+
+.employeesListRowsContainer p{
+    text-align: center;
+    font-size: 20px;
+    flex: 1;
+}
 .employeesListColumnsContainer p{
-    font-size: 1.5vw;
+    text-align: center;
+    font-size: 20px;
+    flex: 1;
+}
+#employeesListColumnsID {
+    max-width: 48px;
 }
 
 .employeesListColumnsContainer div{
@@ -89,12 +166,57 @@
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
     z-index: 2;
-    cursor: pointer;
+
 }
 
-.overlayFormContainer{
+.overlayForm{
     display: flex;
     justify-self: center;
     padding-top: 32vh;
     align-items: center;
+}
+
+.overlayFormContainer {
+    background-color: var(--interactable-primary);
+    border-radius: 4px;
+    position: relative;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.overlayFormContainer p{
+    margin: 0;
+ }
+
+ .overlayFormContainer h3{
+    margin: 0;
+ }
+
+ .overlayFormCloseButton{
+    align-self: right;
+    position: absolute;
+    right: 24px;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 10px 20px -18px;
+ }
+
+.deleteEmployeeButton{
+    z-index: 1;
+    justify-self: right;
+}
+
+.deleteEmployeeButton img{
+    height: 40px;
+    width: 40px;
+}
+
+.employeesListRowLinkContainer {
+    text-align: center;
+    flex: 1;
 }

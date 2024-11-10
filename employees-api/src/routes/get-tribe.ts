@@ -17,15 +17,13 @@ export default function getIndex(fastify: FastifyInstance): RouteOptions {
     },
     handler: async function (request: FastifyRequest, reply: FastifyReply) {
       const { id } = request.params as IdType;
-      // const tribe = await tribesModel.getTribe(fastify, id);
-      reply.statusCode = 501
-      reply.send("Feature is not implemented");
-      // if(employee == null){
-      //   reply.statusCode = 404
-      //   reply.send("No employee found")
-      // } else {
-      //   reply.send(employee);
-      // }
+
+      const tribe = await tribesModel.getTribe(fastify, id);
+      if(!tribe){
+        reply.code(404).send({error:'No employee with id ' + id + ' is found'});
+      } else {
+        reply.send(tribe);
+      }
     },
   };
 }

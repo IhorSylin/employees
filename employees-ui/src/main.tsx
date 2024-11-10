@@ -7,32 +7,38 @@ import { Employees, employeesLoader } from './components/Employees.js';
 import { Tribes, tribesLoader } from './components/Tribes.js';
 import { Report, reportLoader } from './components/Report.js';
 import { EmployeesById, employeesByIdLoader } from './components/EmployeesById.js';
+import { TribesById, tribesByIdLoader } from './components/TribesById.js';
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [{
-      path: '',
+      path: '/',
       element: <Home />,
     },
     {
-      path: 'employees',
+      path: '/employees',
       element: <Employees />,
       loader: employeesLoader,
     },
     {
-      path: 'employees/:id',
+      path: '/employees/:id',
       element: <EmployeesById />,
       loader: employeesByIdLoader,
     },
     {
-      path: 'tribes',
+      path: '/tribes/:id',
+      element: <TribesById />,
+      loader: tribesByIdLoader,
+    },
+    {
+      path: '/tribes',
       element: <Tribes />,
       loader: tribesLoader,
     },
     {
-      path: 'report',
+      path: '/report',
       element: <Report />,
       loader: reportLoader,
     },
